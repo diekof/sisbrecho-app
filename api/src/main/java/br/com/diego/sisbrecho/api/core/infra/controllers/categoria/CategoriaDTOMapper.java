@@ -1,7 +1,6 @@
 package br.com.diego.sisbrecho.api.core.infra.controllers.categoria;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import br.com.diego.sisbrecho.api.core.domain.entities.Categoria;
 import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.dto.CreateCategoriaRequest;

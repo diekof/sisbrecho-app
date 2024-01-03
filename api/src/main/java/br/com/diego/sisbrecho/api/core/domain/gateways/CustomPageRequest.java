@@ -11,6 +11,7 @@ public class CustomPageRequest {
     public CustomPageRequest(int page, int size) {
         this.page = page;
         this.size = size;
+        // this.nome = nome;
     }
 
     // getters...
