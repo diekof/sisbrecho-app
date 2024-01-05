@@ -4,9 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import br.com.diego.sisbrecho.api.core.application.categoria.CreateCategoriaUseCase;
+import br.com.diego.sisbrecho.api.core.application.categoria.DeleteCategoriaUseCase;
 import br.com.diego.sisbrecho.api.core.application.categoria.GetAllCategoriaUseCase;
 import br.com.diego.sisbrecho.api.core.domain.gateways.CategoriaGateway;
-import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.CategoriaDTOMapper;
+import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.mapper.CategoriaDTOMapper;
+
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.CategoriaEntityMapper;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.CategoriaRepository;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.CategoriaRepositoryGateway;
@@ -20,6 +22,10 @@ public class CategoriaConfig {
     @Bean
     CreateCategoriaUseCase createCategoriaUseCase(CategoriaGateway categoriaGateway) {
         return new CreateCategoriaUseCase(categoriaGateway);
+    }
+    @Bean
+    DeleteCategoriaUseCase deleteCategoriaUseCase(CategoriaGateway categoriaGateway) {
+        return new DeleteCategoriaUseCase(categoriaGateway);
     }
 
     @Bean

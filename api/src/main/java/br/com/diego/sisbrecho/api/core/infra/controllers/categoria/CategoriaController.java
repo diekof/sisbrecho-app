@@ -1,9 +1,10 @@
-package br.com.diego.sisbrecho.api.core.infra.controllers;
+package br.com.diego.sisbrecho.api.core.infra.controllers.categoria;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.diego.sisbrecho.api.core.application.categoria.*;
 import br.com.diego.sisbrecho.api.core.domain.entities.Categoria;
 import br.com.diego.sisbrecho.api.core.domain.gateways.CustomPageRequest;
-import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.CategoriaDTOMapper;
 import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.dto.CreateCategoriaRequest;
 import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.dto.CreateCategoriaResponse;
+import br.com.diego.sisbrecho.api.core.infra.controllers.categoria.mapper.CategoriaDTOMapper;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.PageConverter;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.PageableConverter;
 
@@ -27,16 +28,19 @@ public class CategoriaController {
     private final CreateCategoriaUseCase createCategoriaUseCase;
     private final GetAllCategoriaUseCase getAllCategoriaUseCase;
     private final CategoriaDTOMapper categoriaDTOMapper;
+    private final DeleteCategoriaUseCase deleteCategoriaUseCase;
 
     
     public CategoriaController(
         CreateCategoriaUseCase createCategoriaUseCase, 
         CategoriaDTOMapper categoriaDTOMapper,
-        GetAllCategoriaUseCase getAllCategoriaUseCase
+        GetAllCategoriaUseCase getAllCategoriaUseCase,
+        DeleteCategoriaUseCase deleteCategoriaUseCase
         ) {
         this.createCategoriaUseCase = createCategoriaUseCase;
         this.categoriaDTOMapper = categoriaDTOMapper;
         this.getAllCategoriaUseCase = getAllCategoriaUseCase;
+        this.deleteCategoriaUseCase = deleteCategoriaUseCase;
     }
 
     @PostMapping
@@ -52,9 +56,14 @@ public class CategoriaController {
             CategoriaDTOMapper categoriaDTOMapper, Pageable pageable) {
         
         CustomPageRequest customPageRequest = PageableConverter.convertToCustomPageRequest(pageable);
-        List<Categoria> categorias = getAllCategoriaUseCase.execute(customPageRequest);
+        Page<Categoria> categorias = getAllCategoriaUseCase.execute(pageable);
         
-        return PageConverter.listToPage(categorias, pageable);
+        return categorias;//PageConverter.listToPage(categorias, pageable);
+    }
+
+    @DeleteMapping
+    public void deleteCategoria(@RequestParam Long id) {
+        deleteCategoriaUseCase.execute(id);
     }
 }
 

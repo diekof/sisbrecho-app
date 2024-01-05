@@ -1,4 +1,4 @@
-package br.com.diego.sisbrecho.api.core.infra.controllers.categoria;
+package br.com.diego.sisbrecho.api.core.infra.controllers.categoria.mapper;
 
 import java.time.LocalDateTime;
 

@@ -1,10 +1,8 @@
 package br.com.diego.sisbrecho.api.core.infra.db.persistence;
 
 import br.com.diego.sisbrecho.api.core.domain.gateways.CategoriaGateway;
-import br.com.diego.sisbrecho.api.core.domain.gateways.CustomPageRequest;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import br.com.diego.sisbrecho.api.core.domain.entities.Categoria;
@@ -28,10 +26,11 @@ public class CategoriaRepositoryGateway implements CategoriaGateway {
     }
 
     @Override
-    public List<Categoria> pesquisarTodos(CustomPageRequest pageable) {
-        Pageable pageable2 = PageableConverter.convertToPageable(pageable);
-        var categoria =  categoriaRepository.findAll(pageable2);
-        return categoria.map(categoriaEntityMapper::toDomainObj).getContent();
+    public Page<Categoria> pesquisarTodos(Pageable pageable) {
+        // Pageable pageable2 = PageableConverter.convertToPageable(pageable);
+        var categoria =  categoriaRepository.findAll(pageable);
+        return categoria.map(categoriaEntityMapper::toDomainObj);
+        //categoria.map(categoriaEntityMapper::toDomainObj).getContent();
         //categoria.map(categoriaEntityMapper::toDomainObj);
     }
 
