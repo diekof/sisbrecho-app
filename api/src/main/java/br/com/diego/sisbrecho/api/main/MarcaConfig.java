@@ -33,8 +33,8 @@ public class MarcaConfig {
         return new MarcaRepositoryGateway(marcaEntityMapper, marcaRepository);
     }
     @Bean
-    MarcaEntity marcaEntity() {
-        return new MarcaEntity();
+    MarcaEntityMapper marcaEntityMapper() {
+        return new MarcaEntityMapper();
     }
 
 }
