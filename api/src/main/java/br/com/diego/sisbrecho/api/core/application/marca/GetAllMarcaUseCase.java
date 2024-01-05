@@ -10,7 +10,7 @@ import br.com.diego.sisbrecho.api.core.domain.gateways.MarcaGateway;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class GelAllMarcaUseCase {
+public class GetAllMarcaUseCase {
     private final MarcaGateway marcaGateway;
     public Page<Marca> execute(Pageable pageable) {
         return marcaGateway.pesquisarTodos(pageable);
