@@ -8,7 +8,7 @@ import br.com.diego.sisbrecho.api.core.application.marca.DeleteMarcaUseCase;
 import br.com.diego.sisbrecho.api.core.application.marca.GetAllMarcaUseCase;
 
 import br.com.diego.sisbrecho.api.core.domain.gateways.MarcaGateway;
-import br.com.diego.sisbrecho.api.core.infra.db.mapping.MarcaEntity;
+import br.com.diego.sisbrecho.api.core.infra.controllers.marca.mapper.MarcaDTOMapper;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.MarcaEntityMapper;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.MarcaRepository;
 import br.com.diego.sisbrecho.api.core.infra.db.persistence.MarcaRepositoryGateway;
@@ -35,6 +35,10 @@ public class MarcaConfig {
     @Bean
     MarcaEntityMapper marcaEntityMapper() {
         return new MarcaEntityMapper();
+    }
+    @Bean
+    MarcaDTOMapper marcaDTOMapper() {
+        return new MarcaDTOMapper();
     }
 
 }
