@@ -67,7 +67,8 @@ public class ProdutoEntity {
     private Long produtoCategoriaId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "produto_marca_id", referencedColumnName = "marca_id", insertable = false, updatable = false)
+    @JoinColumn(name = "produto_marca_id", 
+    referencedColumnName = "marca_id", insertable = false, updatable = false)
     private MarcaEntity marca;
 
     @OneToOne(cascade = CascadeType.ALL)
